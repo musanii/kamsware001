@@ -67,5 +67,47 @@ GROUP BY
     return $stmt;
 
 }
+
+//create client
+function create(){
+    //query to insert record
+    $query = "INSERT INTO 
+             ". $this->table_name . "
+             SET
+             firstName=:firstName,
+             lastName=:lastName,
+             dateOfBirth=:dateOfBirth,
+             idNumber=:idNumber,
+             phoneNumber=:phoneNumber,
+             createdAt=:createdAt";
+
+             // prepare query
+    $stmt = $this->conn->prepare($query);
+
+    // sanitize
+    $this->firstName=htmlspecialchars(strip_tags($this->firstName));
+    $this->lastName=htmlspecialchars(strip_tags($this->lastName));
+    $this->dateOfBirth=htmlspecialchars(strip_tags($this->dateOfBirth));
+    $this->idNumber=htmlspecialchars(strip_tags($this->idNumber));
+    $this->phoneNumber=htmlspecialchars(strip_tags($this->phoneNumber));
+    $this->createdAt=htmlspecialchars(strip_tags($this->createdAt));
+
+    //bind values
+
+    // bind values
+    $stmt->bindParam(":firstName", $this->firstName);
+    $stmt->bindParam(":lastName", $this->lastName);
+    $stmt->bindParam(":dateOfBirth", $this->dateOfBirth);
+    $stmt->bindParam(":idNumber", $this->idNumber);
+    $stmt->bindParam(":phoneNumber", $this->phoneNumber);
+    $stmt->bindParam(":createdAt", $this->createdAt);
+    // execute query
+    if($stmt->execute()){
+        return true;
+    }
+  
+    return false;
+  
+}
  
 }

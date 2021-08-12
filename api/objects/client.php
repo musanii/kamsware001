@@ -21,5 +21,19 @@ public function __construct($db)
     $this->conn = $db;
     
 }
+
+//read  clients 
+
+function read(){
+
+    $query = "SELECT *  FROM " . $this->table_name . " ORDER BY createdAt DESC";
+
+    //prepare query sts=mt
+    $stmt = $this->conn->prepare($query);
+
+    //execute
+    $stmt->execute();
+    return $stmt;
+}
  
 }

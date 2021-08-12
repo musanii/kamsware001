@@ -35,9 +35,15 @@ if($num>0){
             "lastName"=> $lastName,
             "dateOfBirth"=> $dateOfBirth,
             "idNumber"=> $idNumber,
+            
             "phoneNumber"=> $phoneNumber,
-            "centerName" => $centerName,
-            "locationName"=>$locationName,
+            "centerLocation"=>[
+                "centerName" => $centerName,
+                "locationName"=>$locationName,
+                "longitude"=> $longitude,
+                "latitude"=> $latitude
+            ],
+
             "productName"=>$name,
             "description"=>$description,
             "quantity"=>$quantity

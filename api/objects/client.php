@@ -16,6 +16,8 @@ class Client {
     public $phoneNumber;
     public $centerName;
     public $locationName;
+    public $longitude;
+    public $latitude;
     public $name;
     public $description;
     public $quantity;
@@ -46,7 +48,7 @@ function read()
 function readChildren()
 {
     $query = "SELECT
-     cl.id, cl.firstName,cl.lastName,cl.dateOfBirth,cl.idNumber,cl.phoneNumber, ce.centerName as centerName,ce.locationName as locationName, p.name as name, p.description as description, p.quantity as quantity
+     cl.id, cl.firstName,cl.lastName,cl.dateOfBirth,cl.idNumber,cl.phoneNumber, ce.centerName as centerName,ce.locationName as locationName,ce.longitude as longitude, ce.latitude as latitude, p.name as name, p.description as description, p.quantity as quantity
 FROM
     " . $this->table_name . " cl
     LEFT JOIN

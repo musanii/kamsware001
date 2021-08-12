@@ -44,32 +44,29 @@ function create(){
     $query = "INSERT INTO 
              ". $this->table_name . "
              SET
-             firstName=:firstName,
-             lastName=:lastName,
-             dateOfBirth=:dateOfBirth,
-             idNumber=:idNumber,
-             phoneNumber=:phoneNumber,
+             name=:name,
+             description=:description,
+             quantity=:quantity,
+             client_id=:client_id,
              createdAt=:createdAt";
 
              // prepare query
     $stmt = $this->conn->prepare($query);
 
     // sanitize
-    $this->firstName=htmlspecialchars(strip_tags($this->firstName));
-    $this->lastName=htmlspecialchars(strip_tags($this->lastName));
-    $this->dateOfBirth=htmlspecialchars(strip_tags($this->dateOfBirth));
-    $this->idNumber=htmlspecialchars(strip_tags($this->idNumber));
-    $this->phoneNumber=htmlspecialchars(strip_tags($this->phoneNumber));
+    $this->name=htmlspecialchars(strip_tags($this->name));
+    $this->description=htmlspecialchars(strip_tags($this->description));
+    $this->quantity=htmlspecialchars(strip_tags($this->quantity));
+    $this->client_id=htmlspecialchars(strip_tags($this->client_id));
     $this->createdAt=htmlspecialchars(strip_tags($this->createdAt));
 
     //bind values
 
     // bind values
-    $stmt->bindParam(":firstName", $this->firstName);
-    $stmt->bindParam(":lastName", $this->lastName);
-    $stmt->bindParam(":dateOfBirth", $this->dateOfBirth);
-    $stmt->bindParam(":idNumber", $this->idNumber);
-    $stmt->bindParam(":phoneNumber", $this->phoneNumber);
+    $stmt->bindParam(":name", $this->name);
+    $stmt->bindParam(":description", $this->description);
+    $stmt->bindParam(":quantity", $this->quantity);
+    $stmt->bindParam(":client_id", $this->client_id);
     $stmt->bindParam(":createdAt", $this->createdAt);
     // execute query
     if($stmt->execute()){

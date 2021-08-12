@@ -14,7 +14,7 @@ $db = $database->getConnection();
 
 $product = new Product($db);
 
-//read clients 
+//read products
 $stmt = $product->read();
 $num = $stmt->rowCount();
 
@@ -22,7 +22,7 @@ $num = $stmt->rowCount();
 
 if($num>0){
 
-    //clients array
+    //products array
     $products_arr = array();
     $products_arr["records"] = array();
 

@@ -9,52 +9,50 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 // get database connection
 include_once '../config/database.php';
   
-// instantiate client object
-include_once '../objects/client.php';
+// instantiate product object
+include_once '../objects/product.php';
   
 $database = new Database();
 $db = $database->getConnection();
   
-$client = new Client($db);
+$product = new Product($db);
   
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
   
 // make sure data is not empty
 if(
-    !empty($data->firstName) &&
-    !empty($data->lastName) &&
-    !empty($data->dateOfBirth) &&
-    !empty($data->idNumber)&&
-    !empty($data->phoneNumber)
+    !empty($data->name) &&
+    !empty($data->description) &&
+    !empty($data->quantity) &&
+    !empty($data->client_id)
 ){
   
-    // set client property values
-    $client->firstName = $data->firstName;
-    $client->lastName = $data->lastName;
-    $client->dateOfBirth = $data->dateOfBirth;
-    $client->idNumber = $data->idNumber;
-    $client->phoneNumber= $data->phoneNumber;
-    $client->createdAt = date('Y-m-d H:i:s');
+    // set product property values
+    $product->name = $data->name;
+    $product->description = $data->description;
+    $product->quantity = $data->quantity;
+    $product->client_id = $data->client_id;
+    $product->createdAt = date('Y-m-d H:i:s');
   
-    // create the client
-    if($client->create()){
+    // create the product for client
+    if($product->create()){
   
         // set response code - 201 created
         http_response_code(201);
   
         // tell the user
-        echo json_encode(array("message" => "Client was created."));
+        echo json_encode(["message" => "Product was created."]);
     }
   
-    // if unable to create the client, tell the user
+    // if unable to create the product, tell the user
     else{
   
         // set response code - 503 service unavailable
         http_response_code(503);
   
         // tell the user
-        echo json_encode(array("message" => "Unable to create a client."));
+        echo json_encode(array("message" => "Unable to create a product."));
     }
 }
   
@@ -65,6 +63,6 @@ else{
     http_response_code(400);
   
     // tell the user
-    echo json_encode(array("message" => "Unable to create client. Data is incomplete."));
+    echo json_encode(["message" => "Unable to create product. Data is incomplete."]);
 }
 ?>

@@ -7,11 +7,11 @@ To test the endpoints and view necessary data, ensure that your system has apach
 4. Your cloned app has an API folder which also has an objects folder , config, and endpoints. inside the config folder, there is a database.php file that you can edit the database connection variables. Once that is done and your server and MySQL is on , you can test the API endpoints using the links below
 
 ENDPOINTS
-localhost/kamsware/clients/read.php
-localhost/kamsware/clients/read_children.php
-localhost/kamsware/clients/create.php
-localhost/kamsware/products/create.php
-localhost/kamsware/products/read.php
-localhost/kamsware/centers/read.php
-localhost/kamsware/centers/create.php
+localhost/kamsware/api/clients/read.php
+localhost/kamsware/api/clients/read_children.php
+localhost/kamsware/api/clients/create.php
+localhost/kamsware/api/products/create.php
+localhost/kamsware/api/products/read.php
+localhost/kamsware/api/centers/read.php
+localhost/kamsware/api/centers/create.php
 
